@@ -2,9 +2,6 @@
 
 ################################################################
 #
-# Author: Eli Mayost (eli.mayost@cz.ibm.com)
-# Version: 1.0 (01/04/2017)
-#
 # Create soft links to the
 # /root/shell/crontab/HMCscanner/HISTO/2017*_hmcscan_Fractale.xls.gz
 # files, in order to generate an html page to be able to
