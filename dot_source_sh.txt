@@ -1,0 +1,79 @@
+. (dot) runs a shell script in the current environment and then returns. 
+Normally, the shell runs a command file in a child shell so that changes to the environment by such commands as 
+cd, set, and trap are local to the command file. The . (dot) command circumvents this feature.
+
+[root@localhost web]# cat file1
+pwd
+echo content of $(pwd) $(ls -1 $(pwd)/*|xargs)
+cd ~nikira;pwd
+echo content of $(pwd) $(ls -1 $(pwd)/*|xargs)
+echo $$
+[root@localhost web]# sh file1
+/web
+content of /web /web/file1 /web/file2 /web/file3 /web/file4
+/home/nikira
+content of /home/nikira /home/nikira/index2.htm /home/nikira/index.html /home/nikira/textdocument.txt
+194433
+[root@localhost web]# echo $$
+172605
+[root@localhost web]# cat file2
+echo $SHELL
+for i in 1 2 3 4
+do ls -l /web/file${i}
+done
+cd /sh_script_works
+pwd
+echo $$
+
+[root@localhost web]# sh file2
+/bin/bash
+-rw-r--r--. 1 root root 121 Jan  2 17:07 /web/file1
+-rw-r--r--. 1 root root 90 Jan  2 17:10 /web/file2
+-rw-r--r--. 1 root root 34 Jan  2 13:04 /web/file3
+-rw-r--r--. 1 root root 0 Jan  1 22:56 /web/file4
+/sh_script_works
+194686
+[root@localhost web]# echo $$
+172605
+[root@localhost web]# cat file3
+sh file1
+echo $$
+sh file2
+echo $$
+[root@localhost web]# sh file3
+/web
+content of /web /web/file1 /web/file2 /web/file3 /web/file4
+/home/nikira
+content of /home/nikira /home/nikira/index2.htm /home/nikira/index.html /home/nikira/textdocument.txt
+195069
+195068
+/bin/bash
+-rw-r--r--. 1 root root 121 Jan  2 17:07 /web/file1
+-rw-r--r--. 1 root root 90 Jan  2 17:10 /web/file2
+-rw-r--r--. 1 root root 34 Jan  2 13:04 /web/file3
+-rw-r--r--. 1 root root 0 Jan  1 22:56 /web/file4
+/sh_script_works
+195084
+195068
+[root@localhost web]# . file1
+/web
+content of /web /web/file1 /web/file2 /web/file3 /web/file4
+/home/nikira
+content of /home/nikira /home/nikira/index2.htm /home/nikira/index.html /home/nikira/textdocument.txt
+172605
+[root@localhost nikira]# pwd
+/home/nikira
+[root@localhost nikira]# echo $$
+172605
+[root@localhost nikira]# echo $$
+172605
+[root@localhost nikira]# printf "echo 4444 >> %s\n" /web/file4|sh
+[root@localhost nikira]# cat /web/file4
+4444
+[root@localhost nikira]# printf "echo 'cd /web' > %s\n" /web/file4|sh
+[root@localhost nikira]# cat /web/file4
+cd /web
+[root@localhost nikira]# source /web/file4
+[root@localhost web]# pwd
+/web
+
