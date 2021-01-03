@@ -1,8 +1,8 @@
 #! /bin/sh
 
 nam=$(hostname)
-echo "Yor computer name is $nam"
-ls -l /
-ps -ef
+
+echo "Yor computer name is  : $nam"
+echo "You are logged as     : $USER"
 
 
