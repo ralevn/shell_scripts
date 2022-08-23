@@ -76,4 +76,8 @@ cd /web
 [root@localhost nikira]# source /web/file4
 [root@localhost web]# pwd
 /web
+ 
 
+
+
+-------------
