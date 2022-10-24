@@ -12,7 +12,7 @@ FPATH=$1
 underlin="================================="
 
 if [ $3 ]; then
-	find $FPATH -type f  -exec grep -qI $FSTRING {} \; -exec echo -e "\n* {}:\n$underlin" \; -exec cat {} \;
+	find $FPATH -type f  -exec grep -qI $FSTRING {} \; -exec echo -e "\nFILE: {}:\n$underlin" \; -exec cat {} \;
 else
 	find $FPATH -type f  -exec grep -qI $FSTRING {} \; -print
 fi
