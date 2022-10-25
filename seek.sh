@@ -2,8 +2,8 @@
 
 # Check supplied parameters
 if [ $# -lt 2 ]; then
-	echo -e "Usage: seek.sh <path> <search_string> [--print | -p]\n \
-		 --print  -p : will print files found"
+	echo -e "Usage: seek <path> <search_string> [--print | -p]\n \
+      --print  -p : will print files found"
 	exit
 fi
 
