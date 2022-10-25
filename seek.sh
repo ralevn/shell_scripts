@@ -24,7 +24,7 @@ done
 
 # Summarise input
 printf "%-18s : %s\n%-18s : %s\n%-18s : %s\n$underlin\n" \
-       "Search Path" $FPATH "Searched string" $FSTRING "Print files" $toprint
+       "Search Path" ${FPATH:="Issue"} "Searched string" ${FSTRING:="Issue"} "Print files" ${toprint:="Issue"}
 
 # Produce Output
 if [ $toprint == "True" ]; then
