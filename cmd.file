@@ -1,6 +1,3 @@
-echo -n "HOST:  $(hostname)"; echo -n " ||  Date : "; echo $(date)
-echo ------------------------------------------------------------------
-# write below the command:
 uname -r
 hostname -I
 grep -Ev "^$|^#" /etc/ssh/sshd_config
