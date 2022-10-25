@@ -1,17 +1,20 @@
 #!/usr/bin/env bash
 
+# Check supplied parameters
 if [ $# -lt 2 ]; then
-	echo -e "Usage: seek.sh <path> <search_string> [-print]\n \
-		 -print: will print files found"
+	echo -e "Usage: seek.sh <path> <search_string> [--print | -p]\n \
+		 --print  -p : will print files found"
 	exit
 fi
 
+# Assign variables
 toprint=False
+underlin="================================="
 
 while [ "$1" != "" ]; do
 	if [ -d $1  ]; then 
 	       FPATH=$1
-           elif [ $1 == "-print" -o $1 == "-p"  ]; then
+           elif [ $1 == "--print" -o $1 == "-p"  ]; then
                toprint=True
            else
                FSTRING=$1		
@@ -19,10 +22,11 @@ while [ "$1" != "" ]; do
         shift
 done
 
-echo -e "Search Path: $FPATH \nPrint files: $toprint \nSearched string: $FSTRING\n"
+# Summarise input
+printf "%-18s : %s\n%-18s : %s\n%-18s : %s\n$underlin\n" \
+       "Search Path" $FPATH "Searched string" $FSTRING "Print files" $toprint
 
-underlin="================================="
-
+# Produce Output
 if [ $toprint == "True" ]; then
 	find $FPATH -type f  -exec grep -qI $FSTRING {} \; -exec echo -e "\nFILE: {}:\n$underlin" \; -exec cat {} \;
 else
