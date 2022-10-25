@@ -9,3 +9,10 @@ NC=$'\e[0m'
 
 HOSTS_FILE=$1
 CMD_FILE=$2
+
+mapfile -t HOSTS < $HOSTS_FILE
+
+for hst in $HOSTS
+do 
+	ssh $hst "bash -s" < $CMD_FILE
+done
