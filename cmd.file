@@ -2,3 +2,4 @@ uname -r
 hostname -I
 #grep -Ev "^$|^#" /etc/ssh/sshd_config
 ls -l /
+w
