@@ -19,18 +19,19 @@ EXECF () {
 	while read cmd
 	do
 		echo "($GREEN$host :$WHITE: $cmd$NC)$YELLOW"
-		ssh -o ConnectTimeout=10 $host 2>/dev/null <<< "$cmd"
-		if [ $? -ne 0 ]
-		then echo "Connection Timeout"
-		   break	
-		fi
+		ssh $host 2>/dev/null <<< "$cmd"
 		echo "$NC"
 	done < <(grep -Ev "^$|^#" $CMD_FILE)
 	}
 
 while read hst
-do 
-	EXECF $hst|grep -v "cockpit.socket"
+do
+	if (nc -z $hst 22)
+	then
+		EXECF $hst|grep -v "cockpit.socket"
+	else
+		echo "Host $WHITE$hst$NC is$RED DOWN$NC"
+	fi
 done < <(grep -Ev "^$|^#" $HOSTS_FILE)
 # echo "$NC"
 

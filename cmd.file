@@ -1,5 +1,7 @@
 uname -r
 hostname -I
 #grep -Ev "^$|^#" /etc/ssh/sshd_config
-ls -l /
-w
+#ls -l /
+#w
+grep ansib /etc/passwd 
+grep ansib /etc/suudoers
