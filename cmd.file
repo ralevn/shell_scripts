@@ -1,7 +1,5 @@
-uname -r
-hostname -I
 #grep -Ev "^$|^#" /etc/ssh/sshd_config
-#ls -l /
-#w
-grep ansib /etc/passwd 
-grep ansib /etc/suudoers
+#grep ansib /etc/passwd 
+ls -l /etc/sudoers.d/
+grep ansibleuser /etc/sudoers.d/*
+
