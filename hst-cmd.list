@@ -1,0 +1,3 @@
+centos9-2 w
+centos9-vb pwd;ls -l;w
+centos8-vb date;hostname
