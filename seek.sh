@@ -28,7 +28,7 @@ printf "%-18s : %s\n%-18s : %s\n%-18s : %s\n$underlin\n" \
 
 # Produce Output
 if [ $toprint == "True" ]; then
-	find $FPATH -type f  -exec grep -qI $FSTRING {} \; -exec echo -e "\nFILE: {}:\n$underlin" \; -exec cat {} \;
+	find $FPATH -type f  -exec grep -qI $FSTRING {} \; -exec echo -e "\nFILE: {}:\n$underlin" \; -exec grep --color=auto $FSTRING {} \;
 else
 	find $FPATH -type f  -exec grep -qI $FSTRING {} \; -print
 fi

@@ -10,5 +10,4 @@ b=$2
 resulta=$a+$b
 resultb=$(($a+$b))
 
-echo $resulta
-echo $resultb
+echo $resulta=$resultb
